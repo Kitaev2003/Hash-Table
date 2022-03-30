@@ -1,2 +1,4 @@
-# Hash-Table
-In addition to the hash table in the repository there is a list written on pointers
+# Хэш-Таблица 
+Если пользователь работает в ОС на платформе Linux, то для ускорения можно воспользоваться MAKE-файлом. Для этого достаточно ввести в терминал:
+```make```
+```./run```
