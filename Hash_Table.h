@@ -29,14 +29,10 @@ class Hash_Table
 	Hash_Table();
 	~Hash_Table();
 	bool setPush(char *word);
+	void getGraf_Dump(int hash);
 	void getDump();
 	
 	private:
 	size_t size_ = 100;
 	List_Main* table_ = 0;
 };
-
-
-
-
-

@@ -35,7 +35,7 @@ void List_Dump(List_Main story)
 	List_Struct* list = story.tail;
 	size_t i = 0;
 	
-	std::cout << "hash : " << story.hash << "size : " << story.size << std::endl;
+	std::cout << "hash : " << story.hash << "  size : " << story.size << std::endl;
 	
 	std::cout << "|";
 	
@@ -70,7 +70,7 @@ void List_Graf(List_Main story)
 	
 	i = 0;
 	
-	while(i < story.size)
+	while(i < (story.size - 1))
 	{
 		GRAF << "		" << i << " -- " << i+1 << " [arrowhead = diamond];" << std::endl;
 		

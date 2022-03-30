@@ -6,6 +6,8 @@ Hash_Table::Hash_Table()
 	
 	table_ = new List_Main[size_];
 	
+	std::cout << "Hash table constructor work! Like" << std::endl; 
+	
 	while(i <= size_)
 	{	
 		table_[i].hash = i;
@@ -17,10 +19,29 @@ Hash_Table::~Hash_Table()
 {
 	if(size_ == 0)
 	{
-			std::cout <<"Class named \"Hash\" empty"<<std::endl; 
+			std::cout << "Class named \"Hash\" empty" << std::endl; 
 	}
 	
-	delete [] table_; 
+	size_t i = 0; 
+	
+	std::cout << "Hash table destructor work! Like!" << std::endl;
+	
+	while(i < size_)
+	{
+		List_Struct* list_new = table_[i].tail;		
+		
+		List_Struct* list_old;
+		i++;
+		
+		while(list_new != 0)
+		{
+			list_old  =  list_new->next;
+			
+			delete list_new;
+			
+			list_new = list_old;
+		} 
+	}
 	size_ = 0;
 }
 
@@ -31,7 +52,6 @@ int Search_Hash(char* word)
 	
 	while(word[i] != '\0')
 	{
-		printf("%ld", size_t(word[i]) );
 		hash =(int)(word[i])  + hash; 
 		i++;
 	}
@@ -39,7 +59,6 @@ int Search_Hash(char* word)
 	
 	hash = hash % 100;
 	
-	printf("%d\n", hash);
 	return hash;
 }
 
@@ -47,10 +66,9 @@ bool Hash_Table::setPush(char *word)
 {	
 	int hash = Search_Hash(word);
 	bool push = false;
-	size_t k = 0;
 	
 	if(table_[hash].size == 0)//Если список ещё пуст добавляем новый элемент 
-	{			  //Можно избавиться, если заполнить нулевой элемент списка, что не является сложным
+	{			  //Можно избавиться, если заполнить нулевой элемент списка
 		List_Insert(&table_[hash], word);
 		
 		push = true;
@@ -87,11 +105,23 @@ void Hash_Table::getDump()
 	size_t i = 0;
 	
 	while(i < size_)
-	{
-		
+	{	
 		List_Dump(table_[i]);
 		i++;
 		
 		std::cout<<std::endl;
 	}	
+}
+
+void Hash_Table::getGraf_Dump(int hash)
+{
+	if(hash < 0)
+	{
+		exit(hash);
+	} 
+	
+	if(table_[hash].size > 0)
+	{
+		List_Graf(table_[hash]);	
+	} 
 }
