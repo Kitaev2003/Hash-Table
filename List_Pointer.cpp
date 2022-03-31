@@ -1,6 +1,6 @@
 #include "Hash_Table.h"
 
-List_Struct* List_Insert(List_Main *story, char* str)
+List_Struct* List_Insert(List_Main *story, const char* str)
 {
 	List_Struct* list_new = new List_Struct;//Создаем новую структуру элементов
 	List_Struct* list_old = story->head;// Создаем структуру предыдущих элементов

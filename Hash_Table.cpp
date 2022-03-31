@@ -45,7 +45,7 @@ Hash_Table::~Hash_Table()
 	size_ = 0;
 }
 
-int Search_Hash(char* word)
+int Search_Hash(const char* word)
 {
 	size_t i = 0;
 	int hash = 0;
@@ -62,7 +62,7 @@ int Search_Hash(char* word)
 	return hash;
 }
 
-bool Hash_Table::setPush(char *word)
+bool Hash_Table::setPush(const char *word)
 {	
 	int hash = Search_Hash(word);
 	bool push = false;
@@ -98,6 +98,37 @@ bool Hash_Table::setPush(char *word)
 
 
 	return push;
+}
+
+bool Hash_Table::getSearch(const char* word)
+{
+	int hash = Search_Hash(word);
+	
+	if(table_[hash].size == 0)//Если список ещё пуст добавляем новый элемент 
+	{
+		printf("Слова нет в таблице\n");
+		return false;
+	}
+	
+	List_Struct* list = table_[hash].tail;
+	
+	do
+	{	
+		if(strcmp(word, list->data) == 0)//Такой элемент уже существует в хеш-таблице
+		{
+			printf("Слово есть в таблице\n");
+			return true; 	
+		}
+		
+		if(list->next != 0)
+		{
+			list = list->next;
+		}
+		
+	}while(list->next != 0);
+	
+	printf("Слова нет в таблице\n");
+	return false;
 }
 
 void Hash_Table::getDump()
